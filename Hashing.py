@@ -7,7 +7,9 @@ from colorama import Fore
 
 class hashing:
 
-    def block_Prehashcheck():
+
+
+    def block_AlyPrehashcheck():
 
         os.system('clear')
 
@@ -32,9 +34,9 @@ class hashing:
             timenow = datetime.datetime.now()
             timestat = timenow.strftime("%Y-%m-%d_%H-%M")
 
-            pre_hashtxt = open((b_Destination.replace("\\","\\\\"))+"Hash_CheckSum-Pre_Analysis(" + str(timestat) + ").txt", "a")
-            pre_hashtxt.write("Pre-Analysis Hash Checksum SHA512: "+ pre_hash.hexdigest())
-            pre_hashtxt.write("\nPre-Analysis Time Elapsed: "+(str(time))+" seconds")
+            pre_hashtxt = open((b_Destination.replace("\\","\\\\"))+"Hash_CheckSum-Pre_Analysis.txt", "a")
+            pre_hashtxt.write(pre_hash.hexdigest())
+            
 
             print(Fore.YELLOW+"\nPre-Analysis Hash Checksum SHA512: "+Fore.RESET, pre_hash.hexdigest())
             print(Fore.YELLOW+"Pre-Analysis Time Elapsed: "+Fore.RESET, time, " seconds")
@@ -43,7 +45,46 @@ class hashing:
 
             print("______________________________________________________\n")
 
-    def block_Posthashcheck():
+    def PreAnalysis_Compare():
+
+        global postExt_hash,preAna_hash
+        global b_destination
+        
+
+        with open('/home/nevin/Desktop/Blocks/s9/Hash_CheckSum-Post_Extraction.txt','r') as file:
+            postExt_hash=file.read()
+
+        with open('/home/nevin/Desktop/Blocks/s9/sda1Hash_CheckSum-Pre_Analysis.txt','r') as file:
+            preAna_hash=file.read()
+
+        print (preAna_hash)
+        print (postExt_hash)
+        
+
+        #global repo_generation
+        #repo_generation = open((b_Destination.replace("\\","\\\\"))+" Hash Verification.txt", "a+", encoding="utf-8")
+
+        #repo_generation.write("\nBlock File Location"+b_Destination)
+        #repo_generation.write("\nResult Storage Location"+b_Destination)
+
+
+        #repo_generation.write("\nPre-Analysis Hash Checksum SHA512: "+ pre_hash.hexdigest()+"\n")
+        #repo_generation.write("\nPost-Analysis Hash Checksum SHA512: "+ postExt_hash+"\n")
+
+        if (preAna_hash) is (postExt_hash):
+            #repo_generation.write("\nHash Checksum Remains Identical after Analysis")
+            print(Fore.CYAN+"\nHash Checksum Remains Identical after Analysis\n\n"+Fore.RESET)
+        else:
+            #repo_generation.write("\nHash Checksum DIFFERED after Analysis")
+            print(Fore.CYAN+"\nHash Checksum DIFFERED after Analysis\n\n"+Fore.RESET)
+        #repo_generation.write("\n\n\n------------------ Analysis Process Completed ------------------")
+        #repo_generation.close()
+
+        #print(Fore.GREEN+"Project Summary Generated!"+Fore.RESET+"\n") 
+
+    
+
+    def block_AlyPosthashcheck():
 
         print(Fore.MAGENTA+"Please wait while The POST_HASH is being Generated!"+Fore.RESET)
         
@@ -98,6 +139,7 @@ class hashing:
 
 
 
-hashing.block_Prehashcheck()
-hashing.block_Posthashcheck()
-hashing.block_Comparehash()
+#hashing.block_AlyPrehashcheck()
+#hashing.block_Posthashcheck()
+#hashing.block_Comparehash()
+hashing.PreAnalysis_Compare()
