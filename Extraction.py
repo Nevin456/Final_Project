@@ -1,5 +1,4 @@
 from posixpath import basename
-import _hashlib
 import hashlib
 from secrets import choice
 from colorama import Fore
@@ -17,10 +16,6 @@ import datetime
 from Analysis import app_analysis
 from Hashing import hashing
 import Main
-#import Analysis
-
-#import Hashing
-
 
 class Block_Extraction:
 
@@ -71,7 +66,6 @@ class Block_Extraction:
 
         if devtype_answers == {'device_select': '1. Physical Device'}:
             devtype = ("-d")
-
         elif devtype_answers == {'device_select': '2. Emulator'}:
             devtype = ('-e')
         elif devtype_answers == {'device_select': 'Exit'}:
@@ -141,10 +135,11 @@ class Block_Extraction:
 
         os.system('clear')
 
+
         """ global b_Location,s_Destination
         b_Location=(bloLoc+"/"+bName)
         s_Destination=(bloLoc+"/") """
-
+        
         b_Location
         BLOCKSIZE = 16384
         start_time = process_time()
@@ -254,21 +249,4 @@ class Block_Extraction:
 Block_Extraction.extraction_init()
 Block_Extraction.block_name()
 Block_Extraction.block_PostExthashcheck()
-
-
-
-
-
-
-    
-
-        
-
-
-
-
-
-
-
-
 

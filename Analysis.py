@@ -22,7 +22,7 @@ class app_analysis:
 
         global bLoc
         #bLoc=input("\nEnter Block File Location: ")
-        bLoc = "/home/nevin/Desktop/AndroidB/data.img"
+        bLoc = "/home/nevin/Desktop/Blocks/dm-1"
         os.system('clear')
         regex_results = codecs.open((bLoc)+"WhatsApp Messsage Results.txt", "a+", encoding="utf-8")
         BLOCKSIZE = 16384
@@ -162,7 +162,7 @@ class app_analysis:
 
   
     
-app_analysis.whatsappanalysis()
-app_analysis.instaanalysis()
+#app_analysis.whatsappanalysis()
+#app_analysis.instaanalysis()
 #app_analysis.viberanalysis()
 #app_analysis.pickme_details()

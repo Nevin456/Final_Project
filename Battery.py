@@ -11,4 +11,6 @@ class Battery_Health:
         print("\n");
 
         os.system("adb shell dumpsys battery")
+
+Battery_Health.B_Health()
         

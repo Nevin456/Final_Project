@@ -56,7 +56,7 @@ class MainScreen:
         {
             'type': 'list',
             'name': 'main_select',
-            'message': 'Cosmos Forensic Predator will discover and devour all! What shall we start with?',
+            'message': 'Cybernate will discover and recover all! What shall we start with?',
             'choices': [
                 Separator(),
                 

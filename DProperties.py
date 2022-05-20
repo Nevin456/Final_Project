@@ -35,7 +35,10 @@ class dev_Prop:
 
 
                     Separator(),
-                    'Exit',
+                    'Go Back',
+
+                     Separator(),
+                    'Exit to Main Screen',
                 ]
             }
         ]
