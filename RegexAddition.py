@@ -9,8 +9,8 @@ from time import process_time
 import datetime
 import re
 import codecs
-
 import regex
+import Main
 
 
 class app_addition:
@@ -26,41 +26,48 @@ class app_addition:
         global regpat
 
 
-        bLoc = "/home/nevin/Desktop/Blocks/dm-1"
-
+        bLoc = input("\nEnter Location of the Block File: ")
+        if os.path.isfile(bLoc):
+            print("Block Found!")
+        else:
+            print("Block not found! Please Try Again")
+            app_addition.add_app()
+        sDes = "/home/kali/Desktop/Cybernate/Regex_Addition/"
         appname = input(Fore.YELLOW+"Enter Application to be added: "+Fore.RESET)
         print("\n")
-        regpat = input(Fore.YELLOW+"Enter Regex Pattern for the Application:"+Fore.RESET)
+        regpat = input("Enter Regex Pattern: ")
         print("\n")
+        print (regpat)
 
-        regex_results = codecs.open((bLoc)+"Results.txt", "a+", encoding="utf-8")
-        BLOCKSIZE = 16384
-        print(Fore.LIGHTYELLOW_EX+"\n\n"+appname+" Details Extracted: \n\n"+Fore.RESET)
-        regex_results.write("Details Extracted: \n\n")
-        global app_matchNum
-        app_matchNum = 0
-        with codecs.open(bLoc, 'r', encoding='utf-8', errors='ignore') as y:
-            blk = y.read(BLOCKSIZE)
-            while len(blk) > 0:
-                app_reg = regpat
-                app_find = re.finditer(app_reg, blk, re.MULTILINE)
+        regex_results = codecs.open((sDes)+"Results.txt ", "a+", encoding="utf-8")
+        BLKSIZE = 16384
+        print(Fore.LIGHTGREEN_EX+"\n\n"+appname+" Details Extracted: \n\n"+Fore.RESET)
+        regex_results.write("Details Extracted: \n")
+        global app_matchnum
+        app_matchnum = 0
+        with codecs.open(bLoc, 'r', encoding='utf-8', errors='ignore') as addreg:
+            blk = addreg.read(BLKSIZE)
+            while len(blk) > 0:       
+                app_find = re.finditer(regpat, blk, re.MULTILINE)
                 for app_matchNum, match in enumerate(app_find):
-                    app_matchNum = app_matchNum + 1
-                    
+                    app_matchNum = app_matchNum + 1             
                     print("\n\nEntire Match {app_matchNum} found: {match}".format(app_matchNum = app_matchNum, match = match.group()))
-                    regex_results.write("\nEntire Match {app_matchnum} found: {match}".format(app_matchNum = app_matchNum, match = match.group()))
-                    print("\n\nInstagram Sender ID (group {groupNum}) found: {group}".format(groupNum = 1, group = match.group(1)))
-                    regex_results.write("\n\nInstagram Sender ID  (group {groupNum}) found: {group}".format(groupNum = 1, group = match.group(1)))
-                    print("\n\nInstagram Message Sent: (group {groupNum}) found: {group}".format(groupNum = 2, group = match.group(2)))
-                    regex_results.write("\n\nInstagram Message Sent (group {groupNum}) found: {group}".format(groupNum = 2, group = match.group(2)))
-                    print("\n\nInstagram Receiver ID: (group {groupNum}) found: {group}".format(groupNum = 3, group = match.group(3)))
-                    regex_results.write("\n\nInstagram Receiver ID (group {groupNum}) found: {group}".format(groupNum = 3, group = match.group(2)))
-                    
+                    regex_results.write("\nEntire Match {app_matchnum} found: {match}".format(app_matchnum = app_matchnum, match = match.group()))
 
-
-                blk = y.read(BLOCKSIZE)
-        y.close()
+                blk = addreg.read(BLKSIZE)
+        addreg.close()
         regex_results.close()
+
+    def returnHome():
+
+        exit = input("\n\nPress Enter to Go back to the Home Screen\n")
+        if quit == "":
+            
+            os.system('clear')
+            Main.MainScreen.home()
+        else:
+            app_addition.returnHome()
+
 
 app_addition.add_app()
 

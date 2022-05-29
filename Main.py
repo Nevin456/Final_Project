@@ -5,9 +5,9 @@ import os
 from colorama import Fore
 from PyInquirer import prompt
 from PyInquirer import Separator
-import pyfiglet
 import sys
-
+import Main
+from art import *
 
 
 class MainScreen:
@@ -15,43 +15,41 @@ class MainScreen:
 
     def home():
 
-        HEADER = 'Cybernate'
-        ART = """                                   
-            i!!!!!!!!!!!!!!!!!!!~{:!!!!i                          
-          i!!!!!!!!!!!!!!!!!!!!!!!~{:!!!!i
-        i!~!!))!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-       i!!)!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    '!h!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  '!!`!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!i
-  ~:!4~/!!!!!!!!!!!!!!!!!!!!!!!~!!!!!!!!!!!!!!!!!!!!!
-  :~!!~)(!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-   ``~!!).~!!!!!!!!!!!!!{!!!!!!!!!!!!!!!!!!!!!!!!!!!!!:
-        ~  '!\!!!!!!!!!!(!!!!!!!!!!!!!!!!!!!!!!4!!!~:
-           '      '--`!!!!!!!!/:\!!{!!((!~.~!!`?~-      :
-              ``-.    `~!{!`)(>~/ \~                   :
-   .                \  : `{{`. {-   .-~`              /
-    .          !:       .\\?.{\   :`      .          :!
-    \ :         `      -~!{:!!!\ ~     :!`         .>!
-    '  ~          '    '{!!!{!!!t                 ! !!
-     '!  !.            {!!!!!!!!!              .~ {~!
-      ~!!..`~:.       {!!!!!!!!!!:          .{~ :LS{
-       `!!!!!!h:!?!!!!!!!!!!!!!(!!!!::..-~~` {!!!!.
-         4!!!!!!!!!!!!!!!!!!!!!~!{!~!!!!!!!!!!!!'
-            `!!!!!!!!!!!{\``!!``(!!!!!!!!!~~  .
-             `!!!!!!!!!!!!!!!!!!!!!!!!!!!!(!:
-               .!!!!!!!!!!!!!!!!!!!!!!!!\~ 
-               .`!!!!!!!/`.;;~;;`~!!!!! '
-                 -~!!!!!!!!!!!!!(!!!!/ .
-                    `!!!!!!!!!!!!!!'
-                      `\!!!!!!!!!~ """
-
         os.system('clear')
-        C = pyfiglet.Figlet(font='slant')
 
-        print(Fore.RED+C.renderText(HEADER)+Fore.RESET)
-        print(ART)
+        print("\n\n")
+        title=text2art("Cybernate","random")
+        print(Fore.BLUE+title+Fore.RESET)
 
+        ART = """  
+      ooooooooooooooooooooooooooooooooooooo
+      8                                .d88
+      8  oooooooooooooooooooooooooooood8888
+      8  8888888888888888888888888P"   8888    oooooooooooooooo
+      8  8888888888888888888888P"      8888    8              8
+      8  8888888888888888888P"         8888    8             d8
+      8  8888888888888888P"            8888    8            d88
+      8  8888888888888P"               8888    8           d888
+      8  8888888888P"                  8888    8          d8888
+      8  8888888P"                     8888    8         d88888
+      8  8888P"                        8888    8        d888888
+      8  8888oooooooooooooooooooooocgmm8888    8       d8888888
+      8 .od88888888888888888888888888888888    8      d88888888
+      8888888888888888888888888888888888888    8     d888888888
+                                               8    d8888888888
+         ooooooooooooooooooooooooooooooo       8   d88888888888
+        d                       ...oood8b      8  d888888888888
+       d              ...oood888888888888b     8 d8888888888888
+      d     ...oood88888888888888888888888b    8d88888888888888
+     dood8888888888888888888888888888888888b
 
+                      """
+
+        
+        
+        print(Fore.GREEN+ART+Fore.RESET)
+
+        
         home_questions = [
         {
             'type': 'list',
@@ -61,11 +59,11 @@ class MainScreen:
                 Separator(),
                 
                 'Perform Block File Extraction on Android Device',
-                'Perform Block FIle Analysis and Report Generation',
-                'Perform Password Bypassing',
-                'Perform Hashing on Extracted Block File',
+                'Perform Block File Analysis and Report Generation',
+                'Perform Password Bypassing on Android',
 
                 Separator(),
+                'Perform Addition of a New Regex Pattern',
                 'Perform Device Properties Acquisition',
                 'Perform Contact List Acquistion',
                 'Perform Device Properties Acquisition',
@@ -78,28 +76,31 @@ class MainScreen:
         }
     ]
 
-        print(Fore.GREEN+"")
+        print(Fore.BLUE+"\n")
         home_answers = prompt(home_questions)
-        print(Fore.RESET+"")
+        print(Fore.RESET+"\n")
 
 
         if home_answers == {'main_select':'Perform Block File Extraction on Android Device'}:
-            import Extraction
-            Extraction
-        
-        
-            """ elif home_answers == {'main_select':'Perform Block FIle Analysis and Report Generation'}:
-            import Analysis """
+            import BLKExtraction
+            BLKExtraction
+
+       
+        elif home_answers == {'main_select':'Perform Block File Analysis and Report Generation'}:
+            import BLKAnalysis
+            BLKAnalysis
+
             
         elif home_answers == {'main_select':'Perform Password Bypassing'}:
             import PBypass
             PBypass.PBypass
 
-        elif home_answers == {'main_select':'Perform Hashing on Extracted Block File'}:
-            import Hashing
-            Hashing
-        
-        
+
+        elif home_answers == {'main_select':'Perform Addition of a New Regex Pattern'}:
+            import RegexAddition
+            RegexAddition
+
+    
         elif home_answers == {'main_select':'Perform Contact List Acquisition'}:
             import ContactExt
             ContactExt
@@ -111,14 +112,11 @@ class MainScreen:
             
         elif home_answers == {'main_select':'Generate Battery Health Report'}:
             import Battery
-            Battery.Battery_Health.Batt_Health()
-            Battery.Battery_Health.return_to_climain()
+            Battery
         
         elif home_answers == {'main_select':'About'}:
-            import About
-            About.about_main.about_screen()
-            About.about_main.return_to_climain() 
-
+            import WA
+            WA
         elif home_answers == {'main_select':'Exit'}:
             os.system('clear')
             sys.exit()   
