@@ -4,6 +4,7 @@ from colorama import Style
 import time
 from PyInquirer import prompt
 from PyInquirer import Separator
+import Main
 
 
 class dev_Prop:
@@ -12,8 +13,7 @@ class dev_Prop:
 
         os.system('clear')
 
-        print(Fore.YELLOW+Style.BRIGHT +
-              "Extraction of Device Properties!"+Style.NORMAL+Fore.RESET)
+        print(Fore.YELLOW+Style.BRIGHT +"Acquisition of Device Properties!"+Style.NORMAL+Fore.RESET)
 
         dprop_options = [
             {
@@ -27,7 +27,7 @@ class dev_Prop:
 
 
                     Separator(),
-                    '2. Main Device Propertices',
+                    '2. Main Device Properties',
 
 
                     Separator(),
@@ -51,14 +51,15 @@ class dev_Prop:
             print(Fore.GREEN+"\nDevice IMEI Number"+Fore.RESET)
             print("__________________________")
             os.system("""adb shell service call iphonesubinfo 1""")
+
             print("\n")
 
-        elif dprop_answers == {'dprop_select': '2. Main Device Propertices'}:
+        elif dprop_answers == {'dprop_select': '2. Main Device Properties'}:
             print(Fore.GREEN+"\'Main Properties"+Fore.RESET)
             print("__________________________")
             time.sleep(1)
-            os.system(
-                'adb shell getprop | grep "model\|version.sdk\|manufacturer\|hardware\|platform\|revision\|serialno\|product.name\|brand"')
+            os.system('adb shell getprop | grep "model\|version.sdk\|manufacturer\|hardware\|platform\|revision\|serialno\|product.name\|brand"')
+
             print("\n")
 
         elif dprop_answers == {'dprop_select': '3. All Device Properties'}:
@@ -66,20 +67,19 @@ class dev_Prop:
             print("__________________________")
             time.sleep(2)
             os.system("adb shell getprop")
+            os.system("adb shell getprop >> /home/kali/Desktop/Cybernate/Other_Info/AllProperties.txt")
 
-        """ print(Fore.GREEN+"\nDevice IMEI Number"+Fore.RESET)
-        print("__________________________")
-        os.system(""""adb shell service call iphonesubinfo 1"""")
-        print("\n")
-        print(Fore.GREEN+"\'dprop Properties"+Fore.RESET)
-        print("__________________________")
-        time.sleep(1)
-        os.system('adb shell getprop | grep "model\|version.sdk\|manufacturer\|hardware\|platform\|revision\|serialno\|product.name\|brand"')
-        print("\n")
-        print(Fore.GREEN+"All Properties"+Fore.RESET)
-        print("__________________________")
-        time.sleep(2)
-        os.system("adb shell getprop") """
+    def returnHome():
+
+        exit = input("\n\nPress Enter to Go back to the Home Screen\n")
+        if exit == "":
+            
+            os.system('clear')
+            Main.MainScreen.home()
+        else:
+            dev_Prop.returnHome()
+
 
 
 dev_Prop.extraction_Devprop()
+dev_Prop.returnHome()

@@ -64,8 +64,7 @@ class MainScreen:
 
                 Separator(),
                 'Perform Addition of a New Regex Pattern',
-                'Perform Device Properties Acquisition',
-                'Perform Contact List Acquistion',
+                'Perform Contact List Acquisition',
                 'Perform Device Properties Acquisition',
                 'Generate Battery Health Report',
                 
@@ -106,7 +105,7 @@ class MainScreen:
             ContactExt
             
         
-        elif home_answers == {'main_select':'Perform Device Properties Acquistion'}:
+        elif home_answers == {'main_select':'Perform Device Properties Acquisition'}:
             import DProperties
             DProperties
             
