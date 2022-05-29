@@ -227,7 +227,7 @@ class blk_analysis:
                     regex_results.write("\n\nFB Messenger ID (group {groupNum}) found: {group}".format(groupNum=2, group=match.group(2)))
                     print(Fore.BLUE+"\n\nFB Messenger Email: (group {groupNum}) found: {group}".format(groupNum=4, group=match.group(4))+Fore.RESET)
                     regex_results.write("\n\nFB Messenger Email(group {groupNum}) found: {group}".format(groupNum=4, group=match.group(4)))
-                    print(Fore.BLUE+"\n\nFB Messenger Phone Number (group {ginsta_roupNum}) found: {group}".format(groupNum=5, group=match.group(5))+Fore.RESET)
+                    print(Fore.BLUE+"\n\nFB Messenger Phone Number (group {groupNum}) found: {group}".format(groupNum=5, group=match.group(5))+Fore.RESET)
                     regex_results.write("\n\nFB Messenger Phone Number(group {groupNum}) found: {group}".format(groupNum=5, group=match.group(5)))
                     print(Fore.BLUE+"\n\nFB Messenger Birthday Month (group {groupNum}) found: {group}".format(groupNum=6, group=match.group(6))+Fore.RESET)
                     regex_results.write("\n\nFB Messenger Birthday Month (group {groupNum}) found: {group}".format(groupNum=6, group=match.group(6)))
